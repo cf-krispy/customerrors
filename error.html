@@ -48,23 +48,8 @@
 </head>
 <body>
     <div class="container">
-        <h1 id="error-code">Oops!</h1>
-        <p id="error-message">Something went wrong.</p>
         <!--<img src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Banana-Single.jpg" alt="Banana Error" class="error-image">-->
         <div>::CLOUDFLARE_ERROR_500S_BOX::</div>
-        <a href="/" class="btn">Go Home</a>
     </div>
-    <script>
-        const errors = {
-            404: "Page not found.",
-            500: "Internal server error.",
-            520: "Unknown error occurred.",
-        };
-        
-        const urlParams = new URLSearchParams(window.location.search);
-        const errorCode = urlParams.get("code") || "520";
-        document.getElementById("error-code").textContent = errorCode;
-        document.getElementById("error-message").textContent = errors[errorCode] || "An unexpected error occurred.";
-    </script>
 </body>
 </html>
