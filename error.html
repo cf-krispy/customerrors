@@ -20,28 +20,22 @@
 </head>
 <body>
   <div class="cf-error-box">
+    <h2>Server Error</h2>
+    <p>An unexpected error occurred. Please try again later.</p>
+    <hr>
     <p><strong>Ray ID:</strong> <code id="cf-ray">Loading...</code></p>
     <p><strong>Your IP address:</strong> <code id="cf-ip">Loading...</code></p>
-    <p><strong>Error reference number:</strong> <code id="error-ref">522</code></p>
+    <p><strong>Error reference number:</strong> <code id="error-ref">Loading...</code></p>
     <p><strong>Cloudflare Location:</strong> <code id="cf-location">Loading...</code></p>
   </div>
 
   <script>
-    async function fetchCFHeaders() {
-      const response = await fetch(window.location.href, { method: 'HEAD' });
-      return {
-        cfRay: response.headers.get('X-CF-Ray') || 'Unavailable',
-        cfIP: response.headers.get('X-Client-IP')?.split(',')[0].trim() || 'Unavailable',
-        cfColo: response.headers.get('X-Client-Country') || 'Unavailable',
-      };
-    }
-  
-    (async () => {
-      const headers = await fetchCFHeaders();
-      document.getElementById('cf-ray').textContent = headers.cfRay;
-      document.getElementById('cf-ip').textContent = headers.cfIP;
-      document.getElementById('cf-location').textContent = headers.cfColo;
-    })();
+    const params = new URLSearchParams(window.location.search);
+
+    document.getElementById('cf-ray').textContent = params.get('ray') || 'Unavailable';
+    document.getElementById('cf-ip').textContent = params.get('ip') || 'Unavailable';
+    document.getElementById('error-ref').textContent = params.get('err') || 'Unavailable';
+    document.getElementById('cf-location').textContent = params.get('colo') || 'Unavailable';
   </script>
 </body>
 </html>
