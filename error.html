@@ -1,45 +1,65 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Server Error (500)</title>
+  <title>Server Error - Custom Page</title>
   <style>
-    .error-box {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      background: #f8f8f8;
+    body { font-family: Arial, sans-serif; background: #f5f7fa; color: #333; padding: 30px; }
+    .cf-error-box {
+      background-color: #fff;
+      border: 1px solid #ddd;
       border-radius: 8px;
+      padding: 20px;
+      max-width: 600px;
       margin: 40px auto;
-      width: 600px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
     }
-    code { background: #eee; padding: 4px; }
+    .cf-error-box h2 { color: #d9534f; }
+    .cf-error-box p { margin: 10px 0; }
+    code { background-color: #eee; padding: 3px 5px; }
   </style>
 </head>
 <body>
-  <div class="error-box">
-    <h2>We're experiencing some technical issues.</h2>
-    <p>Please try again later.</p>
-    <p><strong>Diagnostics:</strong></p>
-    <p>Ray ID: <code id="cf-ray">Fetching...</code></p>
-    <p>Request ID: <code id="cf-request-id">Fetching...</code></p>
+  <div class="cf-error-box">
+    <h2>Error 522 – Connection Timed Out</h2>
+    <p>The origin server did not respond in a timely manner.</p>
+    <hr>
+    <p><strong>Ray ID:</strong> <code id="cf-ray">Loading...</code></p>
+    <p><strong>Your IP address:</strong> <code id="cf-ip">Loading...</code></p>
+    <p><strong>Error reference number:</strong> <code id="error-ref">522</code></p>
+    <p><strong>Cloudflare Location:</strong> <code id="cf-location">Loading...</code></p>
   </div>
 
   <script>
-    document.getElementById("cf-ray").textContent =
-      getHeader("CF-Ray") || "Unavailable";
-    document.getElementById("cf-request-id").textContent =
-      getHeader("CF-Request-ID") || "Unavailable";
-
-    // Helper to retrieve header values from request using Cloudflare Workers environment
-    async function getHeader(name) {
+    async function fetchCFHeaders() {
       const response = await fetch(window.location.href, { method: 'HEAD' });
-      return response.headers.get(name);
+      return {
+        cfRay: response.headers.get('CF-Ray') || 'Unavailable',
+        cfIP: response.headers.get('CF-Connecting-IP') || 
+              response.headers.get('X-Forwarded-For')?.split(',')[0].trim() || 'Unavailable',
+        cfCountry: response.headers.get('CF-IPCountry') || 'Unavailable',
+      };
     }
 
-    // Immediately invoke and set headers
+    // Populate placeholders on page load
     (async () => {
-      document.getElementById("cf-ray").textContent = await getHeader("CF-Ray") || "Unavailable";
-      document.getElementById("cf-request-id").textContent = await getHeader("CF-Request-ID") || "Unavailable";
+      const headers = await fetchCFHeaders();
+      document.getElementById('cf-ray').textContent = headers.cfRay;
+      document.getElementById('cf-ip').textContent = headers.cfIP;
+      document.getElementById('cf-location').textContent = headers.cfCountry === 'Unavailable' 
+        ? headers.cfCountry : cloudflareCountryToCity(headers.cfCountry);
     })();
+
+    // Basic mapping (expandable) from country codes to Cloudflare locations
+    function cloudflareCountryToCity(code) {
+      const locations = {
+        'AU': 'Sydney',
+        'US': 'San Francisco',
+        'SG': 'Singapore',
+        'GB': 'London',
+        // Extend as needed
+      };
+      return locations[code] || code;
+    }
   </script>
 </body>
 </html>
