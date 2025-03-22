@@ -23,19 +23,10 @@
     <h2>Server Error</h2>
     <p>An unexpected error occurred. Please try again later.</p>
     <hr>
-    <p><strong>Ray ID:</strong> <code id="cf-ray">Loading...</code></p>
-    <p><strong>Your IP address:</strong> <code id="cf-ip">Loading...</code></p>
-    <p><strong>Error reference number:</strong> <code id="error-ref">Loading...</code></p>
-    <p><strong>Cloudflare Location:</strong> <code id="cf-location">Loading...</code></p>
+    <p><strong>Ray ID:</strong> <code>{{RAY_ID}}</code></p>
+    <p><strong>Your IP address:</strong> <code>{{CLIENT_IP}}</code></p>
+    <p><strong>Error reference number:</strong> <code>{{ERROR_CODE}}</code></p>
+    <p><strong>Cloudflare Location:</strong> <code>{{COLO}}</code></p>
   </div>
-
-  <script>
-    const params = new URLSearchParams(window.location.search);
-
-    document.getElementById('cf-ray').textContent = params.get('ray') || 'Unavailable';
-    document.getElementById('cf-ip').textContent = params.get('ip') || 'Unavailable';
-    document.getElementById('error-ref').textContent = params.get('err') || 'Unavailable';
-    document.getElementById('cf-location').textContent = params.get('colo') || 'Unavailable';
-  </script>
 </body>
 </html>
