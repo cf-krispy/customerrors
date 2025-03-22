@@ -30,33 +30,18 @@
     async function fetchCFHeaders() {
       const response = await fetch(window.location.href, { method: 'HEAD' });
       return {
-        cfRay: response.headers.get('CF-Ray') || 'Unavailable',
-        cfIP: response.headers.get('CF-Connecting-IP') || 
-              response.headers.get('X-Forwarded-For')?.split(',')[0].trim() || 'Unavailable',
-        cfCountry: response.headers.get('CF-IPCountry') || 'Unavailable',
+        cfRay: response.headers.get('X-CF-Ray') || 'Unavailable',
+        cfIP: response.headers.get('X-Client-IP')?.split(',')[0].trim() || 'Unavailable',
+        cfColo: response.headers.get('X-Client-Country') || 'Unavailable',
       };
     }
-
-    // Populate placeholders on page load
+  
     (async () => {
       const headers = await fetchCFHeaders();
       document.getElementById('cf-ray').textContent = headers.cfRay;
       document.getElementById('cf-ip').textContent = headers.cfIP;
-      document.getElementById('cf-location').textContent = headers.cfCountry === 'Unavailable' 
-        ? headers.cfCountry : cloudflareCountryToCity(headers.cfCountry);
+      document.getElementById('cf-location').textContent = headers.cfColo;
     })();
-
-    // Basic mapping (expandable) from country codes to Cloudflare locations
-    function cloudflareCountryToCity(code) {
-      const locations = {
-        'AU': 'Sydney',
-        'US': 'San Francisco',
-        'SG': 'Singapore',
-        'GB': 'London',
-        // Extend as needed
-      };
-      return locations[code] || code;
-    }
   </script>
 </body>
 </html>
