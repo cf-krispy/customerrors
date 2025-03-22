@@ -13,6 +13,14 @@
       margin: 40px auto;
       box-shadow: 0 3px 6px rgba(0,0,0,0.1);
     }
+    .picture-frame {
+      max-width: 500px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
     .cf-error-box h2 { color: #d9534f; }
     .cf-error-box p { margin: 10px 0; }
     code { background-color: #eee; padding: 3px 5px; }
@@ -21,7 +29,9 @@
 <body>
   <div class="cf-error-box">
     <h2>Server Error</h2>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Banana-Single.jpg" alt="Banana Error" class="error-image">
+    <div class="container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Banana-Single.jpg" alt="Banana Error" class="error-image">
+    </div>
     <p>An unexpected error occurred. Please try again later.</p>
     <hr>
     <p><strong>Ray ID:</strong> <code>{{RAY_ID}}</code></p>
