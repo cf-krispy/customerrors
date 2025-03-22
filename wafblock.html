@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Request Blocked - Custom WAF Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fa;
+      color: #333;
+      padding: 30px;
+    }
+    .waf-block-box {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      max-width: 600px;
+      margin: 40px auto;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .picture-frame {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+      margin: 0 auto 20px;
+      max-width: 100%;
+      display: inline-block;
+    }
+    .block-image {
+      max-width: 100%;
+      height: auto;
+      border-radius: 5px;
+    }
+    .waf-block-box h2 {
+      color: #d9534f;
+    }
+    .waf-block-box p {
+      margin: 10px 0;
+    }
+    code {
+      background-color: #eee;
+      padding: 3px 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="waf-block-box">
+    <h2>Request Blocked</h2>
+    <div class="picture-frame">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Banana-Single.jpg"
+           alt="Banana Blocked"
+           class="block-image">
+    </div>
+    <p>Your request was blocked by security rules.</p>
+    <hr>
+    <p><strong>Ray ID:</strong> <code>::RAY_ID::</code></p>
+    <p><strong>Your IP address:</strong> <code>::CLIENT_IP::</code></p>
+    <p><strong>Cloudflare Location:</strong> <code>::COLO::</code></p>
+  </div>
+</body>
+</html>
