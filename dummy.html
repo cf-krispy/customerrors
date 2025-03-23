@@ -7,28 +7,43 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f5f7fa;
+      background: #f5f7fa;
       color: #333;
-      padding: 0;
       margin: 0;
+      padding: 20px;
+      text-align: center;
     }
-    .iframe-container {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-      margin: 0;
-      padding: 0;
+    .small-box {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      max-width: 600px;
+      padding: 20px;
+      margin: 20px auto;
     }
     iframe {
       border: none;
       width: 100%;
-      height: 100%;
+      height: 500px; /* adjust height if needed */
+      border-radius: 8px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      margin-top: 20px;
+    }
+    code {
+      background-color: #eee;
+      padding: 2px 4px;
     }
   </style>
 </head>
 <body>
-  <iframe src="https://customerrors.pages.dev/wafblock" class="iframe-container" title="Blocked Request"></iframe>
+  <div class="small-box">
+    <h2>Request Blocked</h2>
+    <p>Your request was blocked by security rules.</p>
+    <hr>
+    <p><strong>Ray ID:</strong> <code>::RAY_ID::</code></p>
+    <p><strong>Your IP address:</strong> <code>::CLIENT_IP::</code></p>
+
+    <iframe src="https://yourdomain.com/custom-block-page?ray=::RAY_ID::&ip=::CLIENT_IP::" title="Details"></iframe>
+  </div>
 </body>
 </html>
