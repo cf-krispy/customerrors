@@ -2,9 +2,33 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Sorry</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Request Blocked</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f7fa;
+      color: #333;
+      padding: 0;
+      margin: 0;
+    }
+    .iframe-container {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      margin: 0;
+      padding: 0;
+    }
+    iframe {
+      border: none;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
 </head>
 <body>
-  <h2>Traffic blocked - redirecting</h2>
+  <iframe src="https://customerrors.pages.dev/wafblock" class="iframe-container" title="Blocked Request"></iframe>
 </body>
 </html>
