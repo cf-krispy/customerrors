@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Request Blocked</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+    iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      z-index: 1;
+    }
+    .diagnostics {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+      padding: 8px;
+      font-size: 14px;
+      text-align: center;
+      z-index: 2;
+    }
+    code {
+      background-color: rgba(255,255,255,0.2);
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <iframe src="https://www.commbank.com.au/support/error-pages/waf-deny-page.html"
+          title="WAF Block Page"></iframe>
+
+  <div class="diagnostics">
+    Ray ID: <code>::RAY_ID::</code> &nbsp;|&nbsp; Your IP address: <code>::CLIENT_IP::</code>
+  </div>
+</body>
+</html>
