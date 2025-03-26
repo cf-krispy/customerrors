@@ -1,0 +1,10 @@
+export default {
+    async fetch(request, env, ctx) {
+      try {
+        const response = await fetch(request);
+        return response;
+      } catch (err) {
+        return Response.redirect("https://customerrors.pages.dev/wafblock", 302);
+      }
+    }
+  }
