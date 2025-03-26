@@ -1,10 +1,11 @@
-export default {
-    async fetch(request, env, ctx) {
-      try {
-        const response = await fetch(request);
-        return response;
-      } catch (err) {
-        return Response.redirect("https://customerrors.pages.dev/wafblock", 302);
-      }
-    }
-  }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="refresh" content="0; URL='https://customerrors.pages.dev/wafblock'" />
+  <title>Redirecting...</title>
+</head>
+<body>
+  <p>If you are not redirected automatically, <a href="https://customerrors.pages.dev/wafblock">click here</a>.</p>
+</body>
+</html>
